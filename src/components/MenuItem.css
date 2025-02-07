@@ -1,12 +1,12 @@
 .menuItem {
   display: flex;
   align-items: center;
-  gap: 20px; 
-  padding: 15px;
+  gap: 2%;
+  padding: 1rem;
   width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  border-bottom: 1.2px solid #ddd;
+  margin: 0 auto;
+  justify-content: space-between; /*this spreads out items*/
+  border-bottom: 0.1rem solid #ddd;
 }
 
 .image {
@@ -51,9 +51,9 @@
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .add:hover {
-  background-color: #C8AAAA; /* Darker green on hover */
+  background-color: #C8AAAA;
 }
