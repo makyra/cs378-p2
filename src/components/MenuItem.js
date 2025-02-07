@@ -1,14 +1,20 @@
 import React from 'react';
+import './MenuItem.css';
 
+// this is where the actual menuitem upload takes place
+const MenuItem = ({ title, description, imageName, price }) => {
 
-// This is a functional component that represents a single menu item. It currently takes in the title and displays it in an h2 element.
-// Modify the component to take in all the other properties of a menu item you need and display them in the component.
-// Use bootstrap to style the elements so that it looks like the mockup in the assignment.
-// Hint: You can use the image name to get the image from the images folder.
-const MenuItem = ({ title }) => {
     return (
-        <div>
-            <h2>{title}</h2>
+        <div className="menuItem">
+            <img className="image" src={`/images/${imageName}`} alt={title} />
+            <div className="details">
+                <h2 className="title">{title}</h2>
+                <p className="description">{description}</p>
+                <div className="price-button-container">
+                    <p className="price">${price}</p>
+                    <button className="add">Add</button>
+                </div>
+            </div>
         </div>
     );
 };

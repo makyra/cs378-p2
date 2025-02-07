@@ -2,7 +2,14 @@
   Style your elements by creating CSS classes here.
   Below, you can see an example of a class called "menu" that changes the color of the text to blue. Modify according to your needs.
 */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Italianno&family=Parisienne&display=swap');
+
+html, .body {
+  background-color: #FAFFC5;
+  font-family: 'Montserrat', sans-serif;
+}
 
 .menu {
-  color: blue;
+  color: #5D8765;
 }
