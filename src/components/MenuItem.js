@@ -5,7 +5,7 @@ import './MenuItem.css';
 const MenuItem = ({ title, description, imageName, price, count, updateCount }) => {
     return (
         <div className="menuItem">
-            <img className="image" src={`/images/${imageName}`} alt={title} />
+            <img className="image" src={`${process.env.PUBLIC_URL}/images/${imageName}`} alt={title} />
             <div className="details">
                 <h2 className="title">{title}</h2>
                 <p className="description">{description}</p>
