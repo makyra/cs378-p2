@@ -1,4 +1,5 @@
 import './App.css';
+import { useState } from 'react';
 import MenuItem from './components/MenuItem';
 import MenuHeader from './components/MenuHeader';
 import 'bootstrap/dist/css/bootstrap.min.css'; // This imports bootstrap css styles. You can use bootstrap or your own classes by using the className attribute in your elements.
@@ -78,8 +79,36 @@ const menuItems = [
   }
 ];
 
-
 function App() {
+  const [cart, setCart] = useState({});
+
+  const updateItemCount = (id, count) => {
+    setCart(prevCart => ({
+      ...prevCart,    // for spreading cart and maintaining existing counts
+      [id]: Math.max(0, count)
+    }));
+  };
+
+  // reduce iterates over the menuItems and sums up the total price
+  const subtotal = menuItems.reduce((total, item) => {
+    return total + (cart[item.id] ?? 0) * item.price;
+  }, 0);
+
+  const clearCart = () => setCart({});
+
+  const placeOrder = () => {
+    const orders = menuItems
+    .filter(item => cart[item.id] > 0)
+    .map(item => `${cart[item.id]} ${item.title}`)
+    .join(" & ");
+
+    if (!orders) {
+      alert("No items in cart. Please place order!");
+    } else {
+      alert(`Order placed!\n\n${orders}\nTotal: ${subtotal.toFixed(2)}`);
+    }
+  }
+
   return (
     <div className="body">
       <div className="menu">
@@ -96,8 +125,17 @@ function App() {
             description = {item.description}
             price = {item.price}
             imageName = {item.imageName}
+            count = {cart[item.id] || 0}  // this passes count to MenuItem
+            updateCount={(count) => updateItemCount(item.id, count)}  // this passes update function
           />
         ))}
+      </div>
+      <div className="subtotal-container">
+        <h2>Subtotal: ${subtotal.toFixed(2)}</h2>
+        <div className="button-group">
+          <button onClick={placeOrder}>Order</button>
+          <button onClick={clearCart}>Clear All</button>
+        </div>
       </div>
     </div>
   );

@@ -2,8 +2,7 @@ import React from 'react';
 import './MenuItem.css';
 
 // this is where the actual menuitem upload takes place
-const MenuItem = ({ title, description, imageName, price }) => {
-
+const MenuItem = ({ title, description, imageName, price, count, updateCount }) => {
     return (
         <div className="menuItem">
             <img className="image" src={`/images/${imageName}`} alt={title} />
@@ -12,7 +11,9 @@ const MenuItem = ({ title, description, imageName, price }) => {
                 <p className="description">{description}</p>
                 <div className="price-button-container">
                     <p className="price">${price}</p>
-                    <button className="add">Add</button>
+                    <button className="quantity-button" onClick={() => updateCount(count > 0 ? count - 1 : 0)}>-</button>
+                    <span className="count-display">{count}</span>
+                    <button className="quantity-button" onClick={() => updateCount(count + 1)}>+</button>
                 </div>
             </div>
         </div>
